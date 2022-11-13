@@ -4,7 +4,7 @@ import requests
 import sys
 import csv
 
-def search(path):
+def search(path, month):
     entries = 0
     matching_entries = 0
     uri_list = []
@@ -31,51 +31,33 @@ def search(path):
         if record.rec_type == "warcinfo":
             continue
 
-        # print(record.rec_headers.get_header("WARC-Target-URI"))
         uri = record.rec_headers.get_header("WARC-Target-URI")
-        # if not ".com/" in record.rec_headers.get_header(
-        #     "WARC-Target-URI"
-        # ):
         if not ".com/" in uri:
             continue
 
         entries += 1
-        contents = (
-            record.content_stream()
-            .read()
-            .decode("utf-8", "replace")
-        )
 
-        contents_lower = contents.lower()
+        if "covid" in uri:
+            matching_entries += 1
+            uri_list.append([uri, month])
 
-        if "covid" in contents_lower:
-            # import pdb; pdb.set_trace()
-            for keyword in keywords:
-                if keyword in contents_lower:
-                    print(keyword)
-                    # import pdb; pdb.set_trace()
-                    matching_entries += 1
-                    uri_list.append([uri])
-                    break
+        # contents = (
+        #     record.content_stream()
+        #     .read()
+        #     .decode("utf-8", "replace")
+        # )
 
-        # m = regex.search(contents)
+        # contents_lower = contents.lower()
 
-        # if (m):
-        #     import pdb; pdb.set_trace()
+        # if (contents_lower.count("covid") > 10):
+        #     for keyword in keywords:
+        #         if keyword in contents_lower:
+        #             print(keyword)
+        #             matching_entries += 1
+        #             uri_list.append([uri, month])
+        #             break
 
-        # if m:
-        #     matching_entries = matching_entries + 1
-        #     hits = hits + 1
-        #     m = regex.search(contents, m.end())
-
-            # if (m):
-            #     import pdb; pdb.set_trace()
-
-        # while m:
-        #     m = regex.search(contents, m.end())
-        #     hits = hits + 1
-
-    with open('uri.csv', 'a') as f:
+    with open('url.csv', 'a') as f:
         write = csv.writer(f)
         write.writerows(uri_list)
 
