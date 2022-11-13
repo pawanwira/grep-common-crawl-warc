@@ -11,7 +11,7 @@ entries = 0
 matching_entries = 0
 hits = 0
 
-file_name = "http://commoncrawl.s3.amazonaws.com/crawl-data/CC-MAIN-2019-30/segments/1563195523840.34/warc/CC-MAIN-20190715175205-20190715200159-00000.warc.gz"
+file_name = "https://data.commoncrawl.org/crawl-data/CC-MAIN-2019-30/segments/1563195523840.34/warc/CC-MAIN-20190715175205-20190715200159-00000.warc.gz"
 
 if len(sys.argv) > 1:
     file_name = sys.argv[1]
