@@ -1,7 +1,1 @@
-This repository was forked from https://code402.com/hello-warc-common-crawl-code-samples
 
-In our "python" directory, run.py loops through WARC files that contains paths to web pages from Common Crawl's 2020 archive (which can be found in the "warc_data" directory). run.py then calls the search function in crawl.py to access data from each page, with the goal of finding pages that discuss or are relevant to COVID-19's economic impact, along with the month(s) of 2020 in which the page was pulled from.
-
-I initially thought of checking whether the word "COVID" can be found in the page, along with keywords that relate to economic impact (e.g. economy, economics, health, country, life, impact). However, I soon realized that these keywords may be found in advertisements or parts of the website that do not directly relate to the main content or idea of the article. Hoping to eliminate some less relevant pages, I tried selecting pages where the word COVID appears multiple times only. However, a lot of those websites were still not directly about COVID. Therefore, I tried selecting pages whose URLs contains the word "COVID", hoping that the URL would reflect the main idea of title of the page. Although this approach yielded more relevant pages, some irrelevant websites were still selected. Given more time, I hope to further parse the HTML data and try searching for keywords in titles and main bodies of text only. 
-
-The list of URLs and months can be found in url.csv in the "python" directory.
